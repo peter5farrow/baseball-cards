@@ -15,24 +15,28 @@ function BaseballCard(props) {
   if (showPicture) {
     return (
       <div className="card" onClick={toggleCard}>
-        <h2>{props.name}</h2>
-        <img src={props.imgUrl} alt={props.name} />
+        <h2 key={props.name}>{props.name}</h2>
+        <img
+          src={props.imgUrl}
+          alt={props.name}
+          key={`${props.name}-picture`}
+        />
       </div>
     );
   } else {
     const statsDisplay = [];
     for (const [stat, value] of Object.entries(props.stats)) {
       statsDisplay.push(
-        <p>
+        <p key={stat}>
           {stat}: {value}
         </p>
       );
     }
     return (
       <div className="card" onClick={toggleCard}>
-        <h2>{props.name}</h2>
-        <p>Team: {props.team}</p>
-        <p>Position: {props.position}</p>
+        <h2 key={props.name}>{props.name}</h2>
+        <p key={props.team}>Team: {props.team}</p>
+        <p key={props.position}>Position: {props.position}</p>
         {statsDisplay}
       </div>
     );
